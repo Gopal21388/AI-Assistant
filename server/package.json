@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
-    "build": "babel ./ -d ./build --ignore node_modules"
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -20,12 +19,5 @@
     "nodemon": "^3.1.9",
     "openai": "^4.77.0",
     "xlsx": "^0.18.5"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.26.4",
-    "@babel/core": "^7.26.0",
-    "@babel/preset-env": "^7.26.0",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0"
   }
 }
