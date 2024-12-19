@@ -1,16 +1,17 @@
-import OpenAI from "openai";
-import xlsx from "xlsx";
-import path from "path";
-import dotenv from "dotenv"
+const OpenAI = require("openai");
+const xlsx = require("xlsx");
+const path = require("path");
+const multer = require("multer");
+const dotenv = require("dotenv");
 dotenv.config()
 
 console.log(process.env.OPENAI_API_KEY);
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-});
+}); 
 
-export const getAIResponse = async (req, res) => {
+const getAIResponse = async (req, res) => {
   const { userMessage, chatHistory } = req.body;
   console.log(userMessage, chatHistory);
 
@@ -44,7 +45,7 @@ export const getAIResponse = async (req, res) => {
   }
 };
 
-export const uploadCSV = (req, res) => {
+const uploadCSV = (req, res) => {
   
   try {
     const filePath = req.file.path;
@@ -64,7 +65,7 @@ export const uploadCSV = (req, res) => {
   }
 } 
 
-export const queryGPT = async(req, res) => {
+const queryGPT = async(req, res) => {
   
   const { data } = req.body;
 
@@ -91,3 +92,6 @@ export const queryGPT = async(req, res) => {
     res.status(500).json({ error: 'Failed to fetch response from GPT.' });
   }
 }
+
+
+module.exports = {getAIResponse, uploadCSV, queryGPT };

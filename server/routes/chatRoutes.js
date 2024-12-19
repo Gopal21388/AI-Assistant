@@ -1,6 +1,7 @@
-import express from "express";
-import multer from "multer";
-import { getAIResponse, queryGPT, uploadCSV } from "../controllers/chatController.js";
+const express = require("express");
+const multer = require("multer");
+const { getAIResponse, queryGPT, uploadCSV } = require("../controllers/chatController.js");
+
 // Configure Multer for file uploads
 const upload = multer({ dest: "uploads/" });
 
@@ -10,5 +11,7 @@ router.post("/message", getAIResponse);
 router.post("/upload", upload.single("file"), uploadCSV);
 router.post("/queryGPT", queryGPT);
 
-export default router;
- 
+// Correct the export
+module.exports = router;
+
+  

@@ -1,15 +1,15 @@
-import dotenv from "dotenv";
-import express from "express";
-import cors from "cors";
-import chatRoutes from "./routes/chatRoutes.js";
-dotenv.config()
+const dotenv = require("dotenv");
+const express = require("express");
+const cors = require("cors");
+const chatRoutes = require("./routes/chatRoutes.js");
+dotenv.config();
 const app = express();
 
 
 // Middleware
 app.use(express.json());
 app.use(cors()); 
-
+ 
 // API Routes
 app.use("/api/chat", chatRoutes);
 app.post("/api/chat", chatRoutes);
