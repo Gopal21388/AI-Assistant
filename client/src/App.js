@@ -1,27 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import './App.css';
 import ChatInput from "./components/ChatInput";
 import ChatHistory from "./components/ChatHistory";
 import ExcelUploader from "./components/ExcelUploader";
+import './App.css';
+
 
 const App = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [error, setError] = useState("");
-
-  // // Load chat history from localStorage on initial render
-  // useEffect(() => {
-  //   const savedChatHistory = localStorage.getItem("chatHistory");
-  //   if (savedChatHistory) {
-  //     setChatHistory(JSON.parse(savedChatHistory));
-  //   }
-  // }, []);
-
-  // // Save chat history to localStorage whenever it changes
-  // useEffect(() => {
-  //   localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
-  // }, [chatHistory]);
-
 
   // Load chat history from localStorage on initial render
   useEffect(() => {
@@ -65,26 +52,39 @@ const App = () => {
   };
 
   return (
-    <div className="chat-app-container">
+    <div className="app-container">
+    {/* Header */}
+    <header className="header">
       <h1>Friendly AI Assistant</h1>
-      <div style={{ display: "flex", justifyContent: "space-between", gap: "20px" }}>
-        {/* Chat Section */}
-        <div style={{ flex: 1 }}>
-          {error && <p className="error">{error}</p>}
+    </header>
+  
+    {/* Main Content */}
+    <main className="main-content">
+      <div className="chat-section">
+        <div className="chat-history">
           <ChatHistory chatHistory={chatHistory} />
-          <ChatInput onSendMessage={sendMessage} />
-          <button className="clear-chat-button" onClick={clearChatHistory}>
-            Clear Chat History
-          </button>
         </div>
-
-        {/* Excel Uploader Section */}
-        <div style={{ flex: 1 }}>
-          <ExcelUploader />
-        </div>
+        <ChatInput onSendMessage={sendMessage} />
       </div>
-    </div>
+  
+      {/* Upload Section */}
+      <aside className="upload-section">
+        <h2>Upload Data</h2>
+        <ExcelUploader />
+        <button onClick={clearChatHistory} className="clear-button">
+          Clear Chat History
+        </button>
+      </aside>
+    </main>
+  
+    {/* Footer */}
+    <footer className="footer">
+      <p>Powered by AI | Built with ❤️ by You</p>
+    </footer>
+  </div>
+  
   );
+  
 };
 
 export default App;
